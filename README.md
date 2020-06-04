@@ -14,7 +14,7 @@ This repository contains the samples that demonstrate the functionalities of Mas
  </tr>
  <tr>
   <td><a href="Samples/BasicMasks">Various mask examples</a></td>
-  <td><a href="Samples/Apperance">Apperance</a></td>
+  <td><a href="Samples/Appearance">Appearance</a></td>
   <td><a href="Samples/Themes">Themes</a></td>
  </tr>
 </table>
