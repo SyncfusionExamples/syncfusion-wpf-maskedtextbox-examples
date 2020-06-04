@@ -1,0 +1,140 @@
+﻿<Window x:Class="InputOptions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InputOptions"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="SfMaskedEdit - Input options" Height="450" Width="760">
+
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <syncfusion:SfMaskedEdit Watermark="Enter phone number" 
+                                         ErrorBorderBrush="Yellow" 
+                                         Mask="{Binding Mask}"
+                                         ValidationMode="{Binding ValidationMode}"
+                                         ValueMaskFormat="{Binding ValueMaskFormat}" 
+                                         ShowPromptOnFocus="{Binding ShowPromptOnFocus}"
+                                         Value="{Binding Value}"
+                                         PromptChar="{Binding ElementName=promptchar, Path=Text}"                                         
+                                         
+                                         MaskType="RegEx"
+                                         x:Name="sfMaskedEdit"
+                                         Margin="20" 
+                                         Height="25" 
+                                         Width="200"
+                                         VerticalAlignment="Bottom"
+                                         HorizontalAlignment="Center"
+                                         Grid.Row="0" 
+                                         Grid.ColumnSpan="2"/>
+                <TextBlock Text="Selected Value : "
+                           Width="150" 
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Right"
+                           Height="25"
+                           Grid.Column="0"
+                           Grid.Row="1"/>
+                <TextBlock Text="{Binding ElementName=sfMaskedEdit,Path=Value}"
+                           Width="150" 
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Height="25"
+                           Grid.Column="1" 
+                           Grid.Row="1"/>
+               
+            </Grid>
+        </Border>
+
+        <GroupBox Margin="0,0,3,3" 
+                  Grid.Column="1" 
+                  Header="User Options">
+            <Grid HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Margin="3"
+                           Text ="ValueMaskFormat" 
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                <ComboBox SelectedItem="{Binding ValueMaskFormat, Mode=TwoWay}" 
+                          Grid.Row="0" 
+                          Grid.Column="1"  
+                          Margin="3">
+                    <syncfusion:MaskFormat>ExcludePromptAndLiterals</syncfusion:MaskFormat>
+                    <syncfusion:MaskFormat>IncludeLiterals</syncfusion:MaskFormat>
+                    <syncfusion:MaskFormat>IncludePrompt</syncfusion:MaskFormat>
+                    <syncfusion:MaskFormat>IncludePromptAndLiterals</syncfusion:MaskFormat>
+                </ComboBox>
+
+                <TextBlock Margin="3"
+                           Text ="ValidationMode"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                <ComboBox SelectedItem="{Binding ValidationMode, Mode=TwoWay}" 
+                          Grid.Row="1" 
+                          Grid.Column="1" 
+                          Margin="3">
+                    <syncfusion:InputValidationMode>KeyPress</syncfusion:InputValidationMode>
+                    <syncfusion:InputValidationMode>LostFocus</syncfusion:InputValidationMode>
+                </ComboBox>            
+
+                <TextBlock Margin="3"
+                           Text ="Prompt Character"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                <TextBox Name="promptchar"
+                         Text="_"
+                         Grid.Row="2" 
+                         Grid.Column="1" 
+                         Margin="3"/>
+                
+                <TextBlock Margin="3"
+                           Text ="ShowPrompt OnFocus"
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+                <CheckBox IsChecked="{Binding ShowPromptOnFocus,Mode=TwoWay}"
+                          Grid.Row="3" 
+                          Grid.Column="1" 
+                          Margin="3"/>
+
+                <TextBlock Margin="3"
+                           Text ="Enter mask pattern"
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+                <TextBox Text="{Binding Mask,Mode=TwoWay}"
+                         Grid.Row="4" 
+                         Grid.Column="1" 
+                         Margin="3"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
